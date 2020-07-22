@@ -1,6 +1,5 @@
 package com.prim4s.msccbrewery.web.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prim4s.msccbrewery.web.model.BeerDto;
 import com.prim4s.msccbrewery.web.services.BeerService;

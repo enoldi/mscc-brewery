@@ -19,7 +19,7 @@ public class CustomerDTO {
 
     private UUID id;
 
-    private String CustomerName;
+    private String customerName;
 
     private Long beerQuantities;
 }
