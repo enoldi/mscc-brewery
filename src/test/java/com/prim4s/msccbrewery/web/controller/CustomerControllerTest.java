@@ -1,6 +1,7 @@
 package com.prim4s.msccbrewery.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prim4s.msccbrewery.web.controller.v1.CustomerController;
 import com.prim4s.msccbrewery.web.model.CustomerDTO;
 import com.prim4s.msccbrewery.web.services.CustomerService;
 import org.junit.jupiter.api.BeforeEach;

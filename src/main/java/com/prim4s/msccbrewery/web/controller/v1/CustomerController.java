@@ -1,4 +1,4 @@
-package com.prim4s.msccbrewery.web.controller;
+package com.prim4s.msccbrewery.web.controller.v1;
 
 import com.prim4s.msccbrewery.web.model.CustomerDTO;
 import com.prim4s.msccbrewery.web.services.CustomerService;
