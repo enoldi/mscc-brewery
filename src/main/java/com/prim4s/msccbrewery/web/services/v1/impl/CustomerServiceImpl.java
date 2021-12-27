@@ -1,7 +1,7 @@
-package com.prim4s.msccbrewery.web.services.impl;
+package com.prim4s.msccbrewery.web.services.v1.impl;
 
 import com.prim4s.msccbrewery.web.model.CustomerDTO;
-import com.prim4s.msccbrewery.web.services.CustomerService;
+import com.prim4s.msccbrewery.web.services.v1.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

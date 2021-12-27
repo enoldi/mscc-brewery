@@ -1,9 +1,9 @@
-package com.prim4s.msccbrewery.web.controller;
+package com.prim4s.msccbrewery.web.controller.V2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prim4s.msccbrewery.web.controller.v1.CustomerController;
+import com.prim4s.msccbrewery.web.controller.v2.CustomerControllerV2;
 import com.prim4s.msccbrewery.web.model.CustomerDTO;
-import com.prim4s.msccbrewery.web.services.v1.CustomerService;
+import com.prim4s.msccbrewery.web.services.v2.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,8 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(CustomerController.class)
+@WebMvcTest(CustomerControllerV2.class)
 public class CustomerControllerTest {
 
     @MockBean
@@ -54,7 +54,7 @@ public class CustomerControllerTest {
     void getBeerDto() throws Exception {
         given(customerService.getCustomerById(any(UUID.class))).willReturn(validCustomer);
 
-        mockMvc.perform(get("/api/v1/customer/" + validCustomer.getId().toString()).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v2/customer/" + validCustomer.getId().toString()).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", is(validCustomer.getId().toString())))
@@ -76,7 +76,7 @@ public class CustomerControllerTest {
         String customerDtoJson = objectMapper.writeValueAsString(customerDTO);
 
         given(customerService.saveNewCustomer(any())).willReturn(customerDTOSaved);
-        mockMvc.perform(post("/api/v1/customer/")
+        mockMvc.perform(post("/api/v2/customer/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(customerDtoJson))
                         .andExpect(status().isCreated());
@@ -89,7 +89,7 @@ public class CustomerControllerTest {
         String customerJson = objectMapper.writeValueAsString(customerDTO);
 
         // when
-        mockMvc.perform(put("/api/v1/customer/" + UUID.randomUUID())
+        mockMvc.perform(put("/api/v2/customer/" + UUID.randomUUID())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(customerJson))
                 .andExpect(status().isNoContent());
@@ -101,7 +101,7 @@ public class CustomerControllerTest {
     void deleteCustomer() throws Exception {
         given(customerService.getCustomerById(any(UUID.class))).willReturn(validCustomer);
 
-        mockMvc.perform(delete("/api/v1/customer/" + validCustomer.getId().toString()).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/api/v2/customer/" + validCustomer.getId().toString()).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
 }

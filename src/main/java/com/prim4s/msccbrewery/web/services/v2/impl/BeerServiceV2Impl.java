@@ -1,7 +1,7 @@
-package com.prim4s.msccbrewery.web.services.impl;
+package com.prim4s.msccbrewery.web.services.v2.impl;
 
 import com.prim4s.msccbrewery.web.model.BeerDto;
-import com.prim4s.msccbrewery.web.services.BeerService;
+import com.prim4s.msccbrewery.web.services.v2.BeerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class BeerServiceImpl implements BeerService {
+public class BeerServiceV2Impl implements BeerService {
     @Override
     public BeerDto getBeerById(UUID beerId) {
         return BeerDto.builder().id(UUID.randomUUID())

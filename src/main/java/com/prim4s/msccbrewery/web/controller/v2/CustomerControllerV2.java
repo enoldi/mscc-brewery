@@ -1,27 +1,27 @@
-package com.prim4s.msccbrewery.web.controller.v1;
+package com.prim4s.msccbrewery.web.controller.v2;
 
 import com.prim4s.msccbrewery.web.model.CustomerDTO;
-import com.prim4s.msccbrewery.web.services.v1.CustomerService;
+import com.prim4s.msccbrewery.web.services.v2.CustomerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 import javax.validation.Valid;
+import java.util.UUID;
 
 /**
  * Created by CHAMGOUE on 21/07/2020
  */
 
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/api/v2/customer")
 @RestController
-public class CustomerController {
+public class CustomerControllerV2 {
 
-    private final CustomerService customerService;
+    private final CustomerService customerServiceV2;
 
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+    public CustomerControllerV2(CustomerService customerService) {
+        this.customerServiceV2 = customerService;
     }
 
     /**
@@ -32,7 +32,7 @@ public class CustomerController {
     @GetMapping("/{customerId}")
     public ResponseEntity<CustomerDTO> getBeerDto(@PathVariable("customerId") UUID customerId) {
 
-        return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.OK);
+        return new ResponseEntity<>(customerServiceV2.getCustomerById(customerId), HttpStatus.OK);
     }
 
     /**
@@ -42,7 +42,7 @@ public class CustomerController {
      */
     @PostMapping
     public ResponseEntity postCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
-        CustomerDTO customerDTOSaved = customerService.saveNewCustomer(customerDTO);
+        CustomerDTO customerDTOSaved = customerServiceV2.saveNewCustomer(customerDTO);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/api/v1/customer/" + customerDTOSaved.getId().toString());
@@ -58,7 +58,7 @@ public class CustomerController {
      */
     @PutMapping("/{customerId}")
     public ResponseEntity updateCustomer(@PathVariable("customerId") UUID customerId, @Valid @RequestBody CustomerDTO customerDTO) {
-        customerService.updateCustomer(customerId, customerDTO);
+        customerServiceV2.updateCustomer(customerId, customerDTO);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
@@ -66,6 +66,6 @@ public class CustomerController {
     @DeleteMapping("/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable("customerId") UUID customerId) {
-        customerService.deleteById(customerId);
+        customerServiceV2.deleteById(customerId);
     }
 }

@@ -1,4 +1,4 @@
-package com.prim4s.msccbrewery.web.services;
+package com.prim4s.msccbrewery.web.services.v2;
 
 import com.prim4s.msccbrewery.web.model.BeerDto;
 
