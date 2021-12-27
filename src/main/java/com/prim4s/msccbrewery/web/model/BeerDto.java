@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Positive;
 
 /**
  * Chamgoue created on 21/07/2020
@@ -17,11 +20,15 @@ import java.util.UUID;
 @Builder
 public class BeerDto {
 
+    @Null
     private UUID id;
 
+    @NotBlank
     private String beerName;
-
+    
+    @NotBlank
     private String beerStyle;
 
+    @Positive
     private Long upc;
 }

@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(CustomerController.class)
-class CustomerControllerTest {
+public class CustomerControllerTest {
 
     @MockBean
     CustomerService customerService;
@@ -89,7 +89,7 @@ class CustomerControllerTest {
         String customerJson = objectMapper.writeValueAsString(customerDTO);
 
         // when
-        mockMvc.perform(put("/api/v1/customer/" + validCustomer.getId())
+        mockMvc.perform(put("/api/v1/customer/" + UUID.randomUUID())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(customerJson))
                 .andExpect(status().isNoContent());

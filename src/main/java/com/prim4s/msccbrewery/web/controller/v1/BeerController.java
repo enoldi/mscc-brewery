@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+import javax.validation.Valid;
 
 /**
  * Chamgoue created on 21/07/2020
@@ -40,7 +41,7 @@ public class BeerController {
      * @return
      */
     @PostMapping
-    public ResponseEntity postBeerDto(@RequestBody BeerDto beerDto) {
+    public ResponseEntity postBeerDto(@Valid @RequestBody BeerDto beerDto) {
 
         BeerDto beerDtoSaved = beerService.saveNewBeer(beerDto);
 
@@ -59,7 +60,7 @@ public class BeerController {
      * @return
      */
     @PutMapping("/{beerId}")
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto) {
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto) {
         beerService.updateBeer(beerId, beerDto);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
